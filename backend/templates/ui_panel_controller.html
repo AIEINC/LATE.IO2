@@ -1,0 +1,23 @@
+
+<div id="panelController" style="margin: 20px;">
+  <button onclick="showPanel('bots')">Bots</button>
+  <button onclick="showPanel('brain')">Brain</button>
+  <button onclick="showPanel('worker')">Worker</button>
+  <button onclick="showPanel('logs')">Logs</button>
+  <button onclick="showPanel('console')">Console</button>
+</div>
+
+<div id="botsPanel" style="display:none;">[Bots Panel Placeholder]</div>
+<div id="brainPanel" style="display:none;">[Brain Panel Placeholder]</div>
+<div id="workerPanel" style="display:none;">[Worker Panel Placeholder]</div>
+<div id="logsPanel" style="display:none;">[Logs Panel Placeholder]</div>
+<div id="consolePanel" style="display:none;">[Console Panel Placeholder]</div>
+
+<script>
+function showPanel(panelName) {
+  const panels = ['botsPanel', 'brainPanel', 'workerPanel', 'logsPanel', 'consolePanel'];
+  for (const panel of panels) {
+    document.getElementById(panel).style.display = (panel === panelName + 'Panel') ? 'block' : 'none';
+  }
+}
+</script>

@@ -1,0 +1,7 @@
+{
+  "required_packages": [
+    "requests",
+    "requests_oauthlib"
+  ],
+  "notes": "These packages will only be required if OAuth integration is extended to real-time token handling and API interaction."
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "task_001",
+    "agent": "ExplorerBot",
+    "action": "run_simulation",
+    "params": {},
+    "schedule": "2025-04-16T10:00:00",
+    "status": "pending"
+  },
+  {
+    "id": "task_002",
+    "agent": "NavigatorBot",
+    "action": "digs_analysis",
+    "params": {},
+    "schedule": "2025-04-17T08:30:00",
+    "status": "pending"
+  }
+]

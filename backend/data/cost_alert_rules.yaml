@@ -1,0 +1,17 @@
+rules:
+  - name: "agentic-spike-alert"
+    metric: "aws_cost_explorer_total"
+    threshold: 500
+    actions:
+      - type: "scale_down"
+        target: "k8s_optimizer"
+        severity: "high"
+      - type: "notify"
+        channels: ["slack#finops", "pagerduty"]
+
+  - name: "idle-resource-alert"
+    metric: "cpu_utilization"
+    threshold: 15%
+    actions:
+      - type: "schedule_termination"
+        delay: "24h"

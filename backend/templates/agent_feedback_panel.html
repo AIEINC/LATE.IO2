@@ -1,0 +1,41 @@
+
+<div id="agentFeedbackPanel" style="display:none; padding: 20px;">
+  <h2>Agent Feedback & Journaling</h2>
+  <input type="text" id="agentFeedbackName" placeholder="Enter Agent Name" />
+  <input type="text" id="feedbackTarget" placeholder="Target (task, module, etc.)" />
+  <textarea id="feedbackText" placeholder="Leave a note or feedback here..." rows="5" style="width:100%;"></textarea><br>
+  <label><input type="checkbox" id="feedbackReinforce" /> Reinforce this behavior</label><br><br>
+  <button onclick="submitAgentFeedback()">Submit Feedback</button>
+  <div id="feedbackStatus" style="margin-top:10px;"></div>
+</div>
+
+<script>
+function toggleAgentFeedbackPanel() {
+  const panel = document.getElementById('agentFeedbackPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function submitAgentFeedback() {
+  const agent = document.getElementById('agentFeedbackName').value.trim();
+  const target = document.getElementById('feedbackTarget').value.trim();
+  const comment = document.getElementById('feedbackText').value.trim();
+  const reinforce = document.getElementById('feedbackReinforce').checked;
+  if (!agent || !target || !comment) return alert("All fields are required.");
+  const payload = {
+    timestamp: new Date().toISOString(),
+    target,
+    comment,
+    reinforce
+  };
+  fetch(`/feedback/${agent}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('feedbackStatus').textContent = data.message;
+    document.getElementById('feedbackText').value = '';
+  });
+}
+</script>

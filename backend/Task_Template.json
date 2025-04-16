@@ -1,0 +1,6 @@
+{
+  "agent": "ExplorerBot",
+  "action": "run_simulation",
+  "params": {},
+  "schedule": "2025-04-17T10:00:00"
+}

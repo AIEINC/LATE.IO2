@@ -1,0 +1,16 @@
+name: Release
+on:
+  push:
+    tags: v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/sign_release.sh
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            agentic-deployment-v5.0.zip
+            agentic-deployment-v5.0.zip.asc

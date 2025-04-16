@@ -1,0 +1,46 @@
+
+<div id="systemLogPanel" style="display:none; padding: 20px;">
+  <h2>System Log</h2>
+  <div style="margin-bottom: 10px;">
+    <label for="logFilter">Filter:</label>
+    <select id="logFilter" onchange="filterLogs()">
+      <option value="ALL">ALL</option>
+      <option value="INFO">INFO</option>
+      <option value="DEBUG">DEBUG</option>
+      <option value="ERROR">ERROR</option>
+      <option value="WARNING">WARNING</option>
+    </select>
+  </div>
+  <pre id="logOutput" style="background:#111; color:#0f0; padding:10px; border-radius:5px; max-height:500px; overflow-y:auto;"></pre>
+</div>
+
+<script>
+let allLogs = [];
+
+function toggleSystemLogPanel() {
+  const panel = document.getElementById('systemLogPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  fetchLogs();
+}
+
+function fetchLogs() {
+  fetch('/logs/system')
+    .then(res => res.json())
+    .then(data => {
+      allLogs = data.logs || [];
+      renderLogs(allLogs);
+    });
+}
+
+function filterLogs() {
+  const filter = document.getElementById('logFilter').value;
+  const filtered = allLogs.filter(line => filter === 'ALL' || line.includes(`[${filter}]`));
+  renderLogs(filtered);
+}
+
+function renderLogs(logs) {
+  document.getElementById('logOutput').textContent = logs.join('');
+}
+
+setInterval(fetchLogs, 10000); // refresh every 10s
+</script>

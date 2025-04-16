@@ -1,0 +1,10 @@
+fastapi
+requests
+pandas
+numpy
+fpdf
+webdav3
+kubernetes
+pyyaml
+stripe
+stable-baselines3

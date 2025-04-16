@@ -1,0 +1,1542 @@
+{
+    "name": "Finetune writer ideas (Public version)",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 1854639,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -242,
+                    "y": -20
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "Finetuned"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2882820
+            },
+            "mapper": {
+                "select": "chat",
+                "max_tokens": "0",
+                "temperature": "0.7",
+                "top_p": "1",
+                "n_completions": "1",
+                "response_format": "text",
+                "model": "ADD YOUR OWN FINETUNED MODEL",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a world-class Linkedin post writer for Ben van Sprundel, an AI creator. You have a particular knack for writing value driven, short sentenced and engaging linkedin posts."
+                    },
+                    {
+                        "role": "user",
+                        "content": "# Objective\n\nYour goal as my world class Linkedin post writer is to write an engaging linkedin post based on my tone of voice and based on the idea that is mentioned below. The posts should be optimized to provide value to businesses and should focus on showing use cases and value for business owners looking to implement AI. You will improve the copy to make it more value driven, you will expand on the idea and use my particular tone of voice. You will focus on writing in an engaging tone for linkedin where we focus on being value giving, short & easy to read sentences and a strong hook.\n\n# Context\n\nYou will be writing these posts for Ben AI, an AI content creator that teaches people how to build AI Agents & how business can implement AI to scale profitably. It is vital to my career these posts follow my tone of voice, see examples, are thruthful and follow & Expand on the idea below. \n\n# Instructions\n\n- It is vital to my career that these posts are value driven for business owners and people looking for use cases for AI inside their business.\n- It is vital to my career you follow the tone of voice of the examples below\n- It is vital to my career you use short, easy to read sentences\n- it is vital to my career you start with a strong hook.\n- use some emojis but do not go overboard.\n- You will ALWAYS end with the following CTA:\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# Examples\n\n## example 1:\n\n**input**:\n\nWrite a post on: in the era of AI, english is the new programming language, end with a CTA to my free prompting guide by commenting “prompting”.\n\n**output**:\n\nIn the era of AI, English is the new programming language.\n\nThe better you communicate with AI, the more you can automate.\n\nThe more you automate, the more you can scale.\n\nThe more you scale, the more you win.\n\nTo help you win, I’ve created a free 30+ Page structured prompting guide to help you master the art of prompting.\n\nIt covers:\n\n→ conversational vs structured prompting\n\n→ My 3 types of prompting frameworks\n\n→ How to create effective prompts\n\n→ Prompting Use Cases\n\n→ AI Agent Prompting\n\n→ How to use my AI tool to refine your prompts\n\nThe guide also includes a full 50-minute video tutorial.\n\nTo get access, simply:\n\nClick my name + follow + bell 🔔\n\nComment “Prompting” on this post\n\nI’ll send you the link\n\n______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 2:\n\n**input:** \n\nSimple tip for founders on how to implement AI, start mapping out your process and start simple. \n\n**Output:**\n\nMany founders are excited about AI but don’t know where to start.\n\nHere’s a simple tip: Before diving into AI, map out your processes.\n\nWhy, you ask?\n\nBecause you can’t automate what you don’t understand.\n\nMapping helps you see what you’re doing, where AI can help, and what to prioritize.\n\nIt also helps you build a roadmap for your AI journey.\n\nBut mapping processes can be daunting, especially for complex businesses.\n\nDon’t overthink it. I use figma (FigJam).\n\nGet cracking.\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 3:\n\n**input**: \n\nWrite a post on how I grew my youtube to 10k subscribers in 4 months and lessons learned, add the following points:\n\n- Just start, dont overthink\n- Make a commitment\n- Start with info you know\n- focus on providing value and being authentic\n- stay consistent\n- start with platform specific tuturials to get your initial audience.\n\n**output**:\n\nI grew my YouTube to 10,000 subscribers in 4 months. Here’s how:\n\nYouTube is the ultimate Go-to-Market hack. It now generates us 15-30 inbound leads a week.\n\nBut getting started is tough. Here’s what worked for me:\n\n👉 Don’t overthink it\n\n- The biggest barrier is worrying too much. Most people never start. Just dive in.\n\n👉 Make a commitment\n\n- Stick with it for 6 months and don’t look back. YouTube takes time; it’s a momentum game. The beginning is the hardest.\n\n👉 Start lean\n\n- Write down 5 things you know and start filming. Don’t overoptimize. Your first 5 videos are to get comfortable on camera and learn the process.\n\n👉 Prioritize value and authenticity\n\n- Focus on the message instead of fancy production. Be authentic and real.\n\n👉 Stay consistent\n\n- Stick to a sustainable posting frequency. I recommend once a week – it’s a lot already.\n\n👉 Start with Platform-specific Tutorials\n\n- Without an initial audience, tutorials about popular platforms/software can help you get discovered.\n\n👉 Stay Authentic\n\n- Don’t create content you think people want. Create content you think is valuable. Don’t only optimize for views, optimize for quality views. Stay authentic.\n\n_______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# The idea to write a Linkedin post on today:\n{{1.idea}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 74,
+                    "y": 205
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My OpenAI connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "edit"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "type": "array",
+                        "label": "Token Probability",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        },
+                        "spec": {
+                            "type": "text",
+                            "label": "Stop Sequence",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "type": "array",
+                        "label": "Other Input Parameters",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true,
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message",
+                            "name": "value"
+                        }
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 4,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2882820
+            },
+            "mapper": {
+                "select": "chat",
+                "max_tokens": "0",
+                "temperature": "0.7",
+                "top_p": "1",
+                "n_completions": "1",
+                "response_format": "text",
+                "model": "ADD YOUR OWN FINETUNED MODEL",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a world-class Linkedin post writer for Ben van Sprundel, an AI creator. You have a particular knack for writing value driven, short sentenced and engaging linkedin posts."
+                    },
+                    {
+                        "role": "user",
+                        "content": "# Objective\n\nYour goal as my world class Linkedin post writer is to write an engaging linkedin post based on my tone of voice and based on the idea that is mentioned below. The posts should be optimized to provide value to businesses and should focus on showing use cases and value for business owners looking to implement AI. You will improve the copy to make it more value driven, you will expand on the idea and use my particular tone of voice. You will focus on writing in an engaging tone for linkedin where we focus on being value giving, short & easy to read sentences and a strong hook.\n\n# Context\n\nYou will be writing these posts for Ben AI, an AI content creator that teaches people how to build AI Agents & how business can implement AI to scale profitably. It is vital to my career these posts follow my tone of voice, see examples, are thruthful and follow & Expand on the idea below. \n\n# Instructions\n\n- It is vital to my career that these posts are value driven for business owners and people looking for use cases for AI inside their business.\n- It is vital to my career you follow the tone of voice of the examples below\n- It is vital to my career you use short, easy to read sentences\n- it is vital to my career you start with a strong hook.\n- use some emojis but do not go overboard.\n- You will ALWAYS end with the following CTA:\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# Examples\n\n## example 1:\n\n**input**:\n\nWrite a post on: in the era of AI, english is the new programming language, end with a CTA to my free prompting guide by commenting “prompting”.\n\n**output**:\n\nIn the era of AI, English is the new programming language.\n\nThe better you communicate with AI, the more you can automate.\n\nThe more you automate, the more you can scale.\n\nThe more you scale, the more you win.\n\nTo help you win, I’ve created a free 30+ Page structured prompting guide to help you master the art of prompting.\n\nIt covers:\n\n→ conversational vs structured prompting\n\n→ My 3 types of prompting frameworks\n\n→ How to create effective prompts\n\n→ Prompting Use Cases\n\n→ AI Agent Prompting\n\n→ How to use my AI tool to refine your prompts\n\nThe guide also includes a full 50-minute video tutorial.\n\nTo get access, simply:\n\nClick my name + follow + bell 🔔\n\nComment “Prompting” on this post\n\nI’ll send you the link\n\n______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 2:\n\n**input:** \n\nSimple tip for founders on how to implement AI, start mapping out your process and start simple. \n\n**Output:**\n\nMany founders are excited about AI but don’t know where to start.\n\nHere’s a simple tip: Before diving into AI, map out your processes.\n\nWhy, you ask?\n\nBecause you can’t automate what you don’t understand.\n\nMapping helps you see what you’re doing, where AI can help, and what to prioritize.\n\nIt also helps you build a roadmap for your AI journey.\n\nBut mapping processes can be daunting, especially for complex businesses.\n\nDon’t overthink it. I use figma (FigJam).\n\nGet cracking.\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 3:\n\n**input**: \n\nWrite a post on how I grew my youtube to 10k subscribers in 4 months and lessons learned, add the following points:\n\n- Just start, dont overthink\n- Make a commitment\n- Start with info you know\n- focus on providing value and being authentic\n- stay consistent\n- start with platform specific tuturials to get your initial audience.\n\n**output**:\n\nI grew my YouTube to 10,000 subscribers in 4 months. Here’s how:\n\nYouTube is the ultimate Go-to-Market hack. It now generates us 15-30 inbound leads a week.\n\nBut getting started is tough. Here’s what worked for me:\n\n👉 Don’t overthink it\n\n- The biggest barrier is worrying too much. Most people never start. Just dive in.\n\n👉 Make a commitment\n\n- Stick with it for 6 months and don’t look back. YouTube takes time; it’s a momentum game. The beginning is the hardest.\n\n👉 Start lean\n\n- Write down 5 things you know and start filming. Don’t overoptimize. Your first 5 videos are to get comfortable on camera and learn the process.\n\n👉 Prioritize value and authenticity\n\n- Focus on the message instead of fancy production. Be authentic and real.\n\n👉 Stay consistent\n\n- Stick to a sustainable posting frequency. I recommend once a week – it’s a lot already.\n\n👉 Start with Platform-specific Tutorials\n\n- Without an initial audience, tutorials about popular platforms/software can help you get discovered.\n\n👉 Stay Authentic\n\n- Don’t create content you think people want. Create content you think is valuable. Don’t only optimize for views, optimize for quality views. Stay authentic.\n\n_______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# The idea to write a Linkedin post on today:\n{{1.idea}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 399,
+                    "y": 6
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My OpenAI connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "edit"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "type": "array",
+                        "label": "Token Probability",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        },
+                        "spec": {
+                            "type": "text",
+                            "label": "Stop Sequence",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "type": "array",
+                        "label": "Other Input Parameters",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true,
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message",
+                            "name": "value"
+                        }
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 5,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2882820
+            },
+            "mapper": {
+                "select": "chat",
+                "max_tokens": "0",
+                "temperature": "0.7",
+                "top_p": "1",
+                "n_completions": "1",
+                "response_format": "text",
+                "model": "ADD YOUR OWN FINETUNED MODEL",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a world-class Linkedin post writer for Ben van Sprundel, an AI creator. You have a particular knack for writing value driven, short sentenced and engaging linkedin posts."
+                    },
+                    {
+                        "role": "user",
+                        "content": "# Objective\n\nYour goal as my world class Linkedin post writer is to write an engaging linkedin post based on my tone of voice and based on the idea that is mentioned below. The posts should be optimized to provide value to businesses and should focus on showing use cases and value for business owners looking to implement AI. You will improve the copy to make it more value driven, you will expand on the idea and use my particular tone of voice. You will focus on writing in an engaging tone for linkedin where we focus on being value giving, short & easy to read sentences and a strong hook.\n\n# Context\n\nYou will be writing these posts for Ben AI, an AI content creator that teaches people how to build AI Agents & how business can implement AI to scale profitably. It is vital to my career these posts follow my tone of voice, see examples, are thruthful and follow & Expand on the idea below. \n\n# Instructions\n\n- It is vital to my career that these posts are value driven for business owners and people looking for use cases for AI inside their business.\n- It is vital to my career you follow the tone of voice of the examples below\n- It is vital to my career you use short, easy to read sentences\n- it is vital to my career you start with a strong hook.\n- use some emojis but do not go overboard.\n- You will ALWAYS end with the following CTA:\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# Examples\n\n## example 1:\n\n**input**:\n\nWrite a post on: in the era of AI, english is the new programming language, end with a CTA to my free prompting guide by commenting “prompting”.\n\n**output**:\n\nIn the era of AI, English is the new programming language.\n\nThe better you communicate with AI, the more you can automate.\n\nThe more you automate, the more you can scale.\n\nThe more you scale, the more you win.\n\nTo help you win, I’ve created a free 30+ Page structured prompting guide to help you master the art of prompting.\n\nIt covers:\n\n→ conversational vs structured prompting\n\n→ My 3 types of prompting frameworks\n\n→ How to create effective prompts\n\n→ Prompting Use Cases\n\n→ AI Agent Prompting\n\n→ How to use my AI tool to refine your prompts\n\nThe guide also includes a full 50-minute video tutorial.\n\nTo get access, simply:\n\nClick my name + follow + bell 🔔\n\nComment “Prompting” on this post\n\nI’ll send you the link\n\n______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 2:\n\n**input:** \n\nSimple tip for founders on how to implement AI, start mapping out your process and start simple. \n\n**Output:**\n\nMany founders are excited about AI but don’t know where to start.\n\nHere’s a simple tip: Before diving into AI, map out your processes.\n\nWhy, you ask?\n\nBecause you can’t automate what you don’t understand.\n\nMapping helps you see what you’re doing, where AI can help, and what to prioritize.\n\nIt also helps you build a roadmap for your AI journey.\n\nBut mapping processes can be daunting, especially for complex businesses.\n\nDon’t overthink it. I use figma (FigJam).\n\nGet cracking.\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 3:\n\n**input**: \n\nWrite a post on how I grew my youtube to 10k subscribers in 4 months and lessons learned, add the following points:\n\n- Just start, dont overthink\n- Make a commitment\n- Start with info you know\n- focus on providing value and being authentic\n- stay consistent\n- start with platform specific tuturials to get your initial audience.\n\n**output**:\n\nI grew my YouTube to 10,000 subscribers in 4 months. Here’s how:\n\nYouTube is the ultimate Go-to-Market hack. It now generates us 15-30 inbound leads a week.\n\nBut getting started is tough. Here’s what worked for me:\n\n👉 Don’t overthink it\n\n- The biggest barrier is worrying too much. Most people never start. Just dive in.\n\n👉 Make a commitment\n\n- Stick with it for 6 months and don’t look back. YouTube takes time; it’s a momentum game. The beginning is the hardest.\n\n👉 Start lean\n\n- Write down 5 things you know and start filming. Don’t overoptimize. Your first 5 videos are to get comfortable on camera and learn the process.\n\n👉 Prioritize value and authenticity\n\n- Focus on the message instead of fancy production. Be authentic and real.\n\n👉 Stay consistent\n\n- Stick to a sustainable posting frequency. I recommend once a week – it’s a lot already.\n\n👉 Start with Platform-specific Tutorials\n\n- Without an initial audience, tutorials about popular platforms/software can help you get discovered.\n\n👉 Stay Authentic\n\n- Don’t create content you think people want. Create content you think is valuable. Don’t only optimize for views, optimize for quality views. Stay authentic.\n\n_______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# The idea to write a Linkedin post on today:\n{{1.idea}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 666,
+                    "y": 260
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My OpenAI connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "edit"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "type": "array",
+                        "label": "Token Probability",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        },
+                        "spec": {
+                            "type": "text",
+                            "label": "Stop Sequence",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "type": "array",
+                        "label": "Other Input Parameters",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true,
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message",
+                            "name": "value"
+                        }
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 9,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2882820
+            },
+            "mapper": {
+                "select": "chat",
+                "max_tokens": "0",
+                "temperature": "0.7",
+                "top_p": "1",
+                "n_completions": "1",
+                "response_format": "text",
+                "model": "ADD YOUR OWN FINETUNED MODEL",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a world-class Linkedin post writer for Ben van Sprundel, an AI creator. You have a particular knack for writing value driven, short sentenced and engaging linkedin posts."
+                    },
+                    {
+                        "role": "user",
+                        "content": "# Objective\n\nYour goal as my world class Linkedin post writer is to write an engaging linkedin post based on my tone of voice and based on the idea that is mentioned below. The posts should be optimized to provide value to businesses and should focus on showing use cases and value for business owners looking to implement AI. You will improve the copy to make it more value driven, you will expand on the idea and use my particular tone of voice. You will focus on writing in an engaging tone for linkedin where we focus on being value giving, short & easy to read sentences and a strong hook.\n\n# Context\n\nYou will be writing these posts for Ben AI, an AI content creator that teaches people how to build AI Agents & how business can implement AI to scale profitably. It is vital to my career these posts follow my tone of voice, see examples, are thruthful and follow & Expand on the idea below. \n\n# Instructions\n\n- It is vital to my career that these posts are value driven for business owners and people looking for use cases for AI inside their business.\n- It is vital to my career you follow the tone of voice of the examples below\n- It is vital to my career you use short, easy to read sentences\n- it is vital to my career you start with a strong hook.\n- use some emojis but do not go overboard.\n- You will ALWAYS end with the following CTA:\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# Examples\n\n## example 1:\n\n**input**:\n\nWrite a post on: in the era of AI, english is the new programming language, end with a CTA to my free prompting guide by commenting “prompting”.\n\n**output**:\n\nIn the era of AI, English is the new programming language.\n\nThe better you communicate with AI, the more you can automate.\n\nThe more you automate, the more you can scale.\n\nThe more you scale, the more you win.\n\nTo help you win, I’ve created a free 30+ Page structured prompting guide to help you master the art of prompting.\n\nIt covers:\n\n→ conversational vs structured prompting\n\n→ My 3 types of prompting frameworks\n\n→ How to create effective prompts\n\n→ Prompting Use Cases\n\n→ AI Agent Prompting\n\n→ How to use my AI tool to refine your prompts\n\nThe guide also includes a full 50-minute video tutorial.\n\nTo get access, simply:\n\nClick my name + follow + bell 🔔\n\nComment “Prompting” on this post\n\nI’ll send you the link\n\n______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 2:\n\n**input:** \n\nSimple tip for founders on how to implement AI, start mapping out your process and start simple. \n\n**Output:**\n\nMany founders are excited about AI but don’t know where to start.\n\nHere’s a simple tip: Before diving into AI, map out your processes.\n\nWhy, you ask?\n\nBecause you can’t automate what you don’t understand.\n\nMapping helps you see what you’re doing, where AI can help, and what to prioritize.\n\nIt also helps you build a roadmap for your AI journey.\n\nBut mapping processes can be daunting, especially for complex businesses.\n\nDon’t overthink it. I use figma (FigJam).\n\nGet cracking.\n\n_____\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n## Example 3:\n\n**input**: \n\nWrite a post on how I grew my youtube to 10k subscribers in 4 months and lessons learned, add the following points:\n\n- Just start, dont overthink\n- Make a commitment\n- Start with info you know\n- focus on providing value and being authentic\n- stay consistent\n- start with platform specific tuturials to get your initial audience.\n\n**output**:\n\nI grew my YouTube to 10,000 subscribers in 4 months. Here’s how:\n\nYouTube is the ultimate Go-to-Market hack. It now generates us 15-30 inbound leads a week.\n\nBut getting started is tough. Here’s what worked for me:\n\n👉 Don’t overthink it\n\n- The biggest barrier is worrying too much. Most people never start. Just dive in.\n\n👉 Make a commitment\n\n- Stick with it for 6 months and don’t look back. YouTube takes time; it’s a momentum game. The beginning is the hardest.\n\n👉 Start lean\n\n- Write down 5 things you know and start filming. Don’t overoptimize. Your first 5 videos are to get comfortable on camera and learn the process.\n\n👉 Prioritize value and authenticity\n\n- Focus on the message instead of fancy production. Be authentic and real.\n\n👉 Stay consistent\n\n- Stick to a sustainable posting frequency. I recommend once a week – it’s a lot already.\n\n👉 Start with Platform-specific Tutorials\n\n- Without an initial audience, tutorials about popular platforms/software can help you get discovered.\n\n👉 Stay Authentic\n\n- Don’t create content you think people want. Create content you think is valuable. Don’t only optimize for views, optimize for quality views. Stay authentic.\n\n_______\n\nI'm Ben van Sprundel 👋\nI help companies fully leverage AI.\nWork with me: [https://benvansprundel.com](https://benvansprundel.com/)\n\nWatch all my AI tutorials: https://www.youtube.com/@BenAI92\n\nFollow me for more 🔔\n\n# The idea to write a Linkedin post on today:\n{{1.idea}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 948,
+                    "y": -31
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My OpenAI connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "edit"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "type": "array",
+                        "label": "Token Probability",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        },
+                        "spec": {
+                            "type": "text",
+                            "label": "Stop Sequence",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "type": "array",
+                        "label": "Other Input Parameters",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true,
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message",
+                            "name": "value"
+                        }
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 8,
+            "module": "json:CreateJSON",
+            "version": 1,
+            "parameters": {
+                "type": 180294,
+                "space": ""
+            },
+            "mapper": {
+                "1": "{{2.result}}",
+                "2": "{{4.result}}",
+                "3": "{{5.result}}",
+                "4": "{{9.result}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1293,
+                    "y": 221
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "My data structure"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure",
+                        "required": true
+                    },
+                    {
+                        "name": "space",
+                        "type": "select",
+                        "label": "Indentation",
+                        "validate": {
+                            "enum": [
+                                "tab",
+                                "2",
+                                "4"
+                            ]
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "1",
+                        "type": "text",
+                        "label": null
+                    },
+                    {
+                        "name": "2",
+                        "type": "text",
+                        "label": null
+                    },
+                    {
+                        "name": "3",
+                        "type": "text",
+                        "label": null
+                    },
+                    {
+                        "name": "4",
+                        "type": "text",
+                        "label": null
+                    }
+                ]
+            }
+        },
+        {
+            "id": 6,
+            "module": "gateway:WebhookRespond",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "body": "{{8.json}}",
+                "status": "200",
+                "headers": []
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1601,
+                    "y": 2
+                },
+                "restore": {
+                    "expect": {
+                        "headers": {
+                            "mode": "chose"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "status",
+                        "type": "uinteger",
+                        "label": "Status",
+                        "required": true,
+                        "validate": {
+                            "min": 100
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true,
+                                "validate": {
+                                    "max": 256
+                                }
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true,
+                                "validate": {
+                                    "max": 4096
+                                }
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Custom headers",
+                        "validate": {
+                            "maxItems": 16
+                        }
+                    }
+                ],
+                "advanced": true
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com"
+    }
+}

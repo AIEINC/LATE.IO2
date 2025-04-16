@@ -1,0 +1,32 @@
+
+<div id="agentHistoryPanel" style="display:none; padding: 20px;">
+  <h2>Agent History & Execution Timeline</h2>
+  <input type="text" id="agentHistorySelect" placeholder="Enter Agent Name" />
+  <button onclick="loadAgentHistory()">Load History</button>
+  <div id="agentLogOutput" style="margin-top: 15px;"></div>
+</div>
+
+<script>
+function toggleAgentHistoryPanel() {
+  const panel = document.getElementById('agentHistoryPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function loadAgentHistory() {
+  const agent = document.getElementById('agentHistorySelect').value.trim();
+  if (!agent) return alert("Enter agent name.");
+  fetch(`/logs/agent/${agent}`)
+    .then(res => res.json())
+    .then(data => {
+      const out = document.getElementById('agentLogOutput');
+      if (!data.length) return out.innerHTML = "<p>No history found.</p>";
+      const html = data.map(log => 
+        `<div style='margin-bottom:10px; background:#111; padding:10px;'>
+          <b>${log.timestamp}</b> - <span style='color:#0ff'>[${log.type}]</span> 
+          <i>${log.action}</i> — ${log.status}<br>${log.note}
+        </div>`
+      ).join('');
+      out.innerHTML = html;
+    });
+}
+</script>

@@ -1,0 +1,29 @@
+
+<div id="agentProfilePanel" style="display:none; padding: 20px;">
+  <h2>Agent Profile</h2>
+  <label for="agentProfileSelect">Select Agent:</label>
+  <input type="text" id="agentProfileSelect" placeholder="Enter Agent Name" />
+  <button onclick="loadAgentProfile()">Load Profile</button>
+  <div id="agentProfileInfo" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+function toggleAgentProfilePanel() {
+  const panel = document.getElementById('agentProfilePanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function loadAgentProfile() {
+  const agent = document.getElementById('agentProfileSelect').value.trim();
+  if (!agent) return alert("Enter an agent name.");
+  fetch(`/digs/analyze/${agent}`)
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('agentProfileInfo');
+      container.innerHTML = `
+        <p><strong>Agent:</strong> ${agent}</p>
+        <pre style="background:#111; color:#0f0; padding:10px;">${data.message}</pre>
+        <p><em>NOTE: Add DIGS upload/download/export actions here in future.</em></p>`;
+    });
+}
+</script>

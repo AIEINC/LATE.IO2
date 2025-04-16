@@ -1,0 +1,14 @@
+{
+  "ExplorerBot": {
+    "twitter": {
+      "client_id": "1234567890",
+      "scope": "read,write",
+      "status": "authorized"
+    },
+    "notion": {
+      "client_id": "abcde12345",
+      "scope": "read:databases",
+      "status": "unauthorized"
+    }
+  }
+}

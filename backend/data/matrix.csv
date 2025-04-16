@@ -1,0 +1,2 @@
+agent_id,role,criteria_1,criteria_2,criteria_3,activation_logic,config,behavior,security
+marketing-agent-01,MarketingBot,engagement_rate < 0.2,,,"lambda metrics: True","{'max_posts': 3}", "{'strategy': 'time_decay'}", "{'jwt_scopes': ['post'], 'rate_limit': 5}"

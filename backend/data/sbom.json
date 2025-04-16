@@ -1,0 +1,11 @@
+{
+  "artifacts": [
+    {
+      "name": "supervisor.py",
+      "version": "3.2.0",
+      "type": "python",
+      "licenses": ["MIT"],
+      "purl": "pkg:pypi/supervisor@3.2.0"
+    }
+  ]
+}

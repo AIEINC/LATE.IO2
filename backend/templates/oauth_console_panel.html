@@ -1,0 +1,46 @@
+
+<div id="oauthConsolePanel" style="display:none; padding: 20px;">
+  <h2>OAuth Integration Console</h2>
+  <button onclick="loadOAuthStatus()">Refresh OAuth Status</button>
+  <input type="file" id="oauthUploadInput" />
+  <button onclick="uploadOAuthConfig()">Upload Config</button>
+  <div id="oauthStatusTable" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+function toggleOAuthConsolePanel() {
+  const panel = document.getElementById('oauthConsolePanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function loadOAuthStatus() {
+  fetch('/oauth/status/ExplorerBot')  // Default agent for now
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('oauthStatusTable');
+      let html = '<table border="1" style="background:#111; color:#fff;"><tr><th>Service</th><th>Status</th><th>Action</th></tr>';
+      for (const [site, info] of Object.entries(data)) {
+        const connected = info.status === 'authorized';
+        html += `<tr><td>${site}</td><td>${info.status}</td><td>${connected ? '✅' : '<button onclick="reauthenticateOAuth(\'' + site + '\')">Authorize</button>'}</td></tr>`;
+      }
+      html += '</table>';
+      container.innerHTML = html;
+    });
+}
+
+function uploadOAuthConfig() {
+  const fileInput = document.getElementById('oauthUploadInput');
+  if (!fileInput.files.length) return alert("Select a file first.");
+  const formData = new FormData();
+  formData.append("file", fileInput.files[0]);
+  fetch('/upload/oauth-config', { method: 'POST', body: formData })
+    .then(res => res.json())
+    .then(data => alert(data.message || "Uploaded."));
+}
+
+function reauthenticateOAuth(site) {
+  fetch(`/oauth/start/${site}`)
+    .then(res => res.json())
+    .then(data => window.open(data.auth_url, "_blank"));
+}
+</script>

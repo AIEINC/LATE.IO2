@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-04-16T11:30:00",
+    "target": "run_simulation",
+    "comment": "The simulation ran too quickly. Please delay execution to allow visualization.",
+    "reinforce": false
+  },
+  {
+    "timestamp": "2025-04-16T12:00:00",
+    "target": "oauth_monitor",
+    "comment": "Great work auto-refreshing tokens. Keep this behavior.",
+    "reinforce": true
+  }
+]

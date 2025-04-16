@@ -1,0 +1,48 @@
+
+<div id="adminConsolePanel" style="display:none; padding: 20px;">
+  <h2>Admin Console</h2>
+  <button onclick="loadSystemOverview()">System Overview</button>
+  <button onclick="listAllFiles()">View Files</button>
+  <button onclick="downloadAllData()">Export All</button>
+  <button onclick="clearType('logs')">Clear Logs</button>
+  <button onclick="clearType('feedback')">Clear Feedback</button>
+  <pre id="adminConsoleOutput" style="margin-top: 10px; background:#111; color:#0f0; padding:10px;"></pre>
+</div>
+
+<script>
+function toggleAdminConsolePanel() {
+  const panel = document.getElementById('adminConsolePanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function loadSystemOverview() {
+  fetch('/admin/system-overview')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('adminConsoleOutput').textContent = JSON.stringify(data, null, 2);
+    });
+}
+
+function listAllFiles() {
+  fetch('/admin/files')
+    .then(res => res.json())
+    .then(files => {
+      let html = "Files:\n" + files.map(f => `- ${f}`).join('\n');
+      document.getElementById('adminConsoleOutput').textContent = html;
+    });
+}
+
+function downloadAllData() {
+  window.open('/admin/export-all', '_blank');
+}
+
+function clearType(type) {
+  if (!confirm("Are you sure you want to delete all " + type + "?")) return;
+  fetch('/admin/clear/' + type, {method: 'POST'})
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      loadSystemOverview();
+    });
+}
+</script>

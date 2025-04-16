@@ -1,0 +1,6 @@
+
+{
+  "perception": {"agent": "visual_agent", "traits": ["object_recognition", "depth_processing"]},
+  "attention": {"agent": "awareness_agent", "traits": ["focus_modulation", "salience_detection"]},
+  "memory": {"agent": "mnemonic_agent", "traits": ["episodic_recall", "semantic_indexing"]}
+}

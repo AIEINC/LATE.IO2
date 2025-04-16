@@ -1,0 +1,50 @@
+{
+  "General": {
+    "default_agent": "ExplorerBot",
+    "data_directory": "/backend/",
+    "auto_save_interval": 300,
+    "enable_auto_backups": true,
+    "timezone": "UTC"
+  },
+  "DIGS": {
+    "segment_size": 2000,
+    "enable_conflict_map": true,
+    "enable_structural_feedback_merge": true,
+    "keep_raw_uploads": false,
+    "cross_source_indexing": true
+  },
+  "Agent": {
+    "feedback_impact_level": "medium",
+    "auto_trait_rebalance": true,
+    "default_task_prompt": "Assist user",
+    "enable_profile_adaptation": true,
+    "memory_recursion_depth": 3
+  },
+  "Tasks": {
+    "max_concurrent_tasks": 5,
+    "retry_failed_tasks": false,
+    "task_timeout_sec": 120,
+    "enable_journaling": true,
+    "live_task_prompts": false
+  },
+  "OAuth": {
+    "auto_reauth_interval": 3600,
+    "enable_token_caching": true,
+    "allow_manual_config_uploads": true,
+    "show_connected_services_ui": true
+  },
+  "UI": {
+    "startup_view": "Bots",
+    "theme": "Dark",
+    "enable_panel_animations": true,
+    "display_system_logs_inline": false,
+    "enable_drag_and_drop": true
+  },
+  "Admin": {
+    "enable_full_system_export": true,
+    "clear_logs_on_restart": false,
+    "enable_recovery_mode": true,
+    "audit_trail_logging": true,
+    "error_reporting_level": "warning"
+  }
+}

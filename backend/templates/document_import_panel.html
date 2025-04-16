@@ -1,0 +1,29 @@
+
+<div id="importDocumentPanel" style="display:none; padding: 20px;">
+  <h2>Import Document for DIGS</h2>
+  <label for="agentDocName">Agent Name:</label>
+  <input type="text" id="agentDocName" placeholder="Enter Agent Name" />
+  <br><br>
+  <input type="file" id="docUploadInput" />
+  <button onclick="uploadDocument()">Upload & Parse</button>
+  <div id="docUploadResult" style="margin-top: 10px;"></div>
+</div>
+
+<script>
+function toggleImportDocumentPanel() {
+  const panel = document.getElementById('importDocumentPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function uploadDocument() {
+  const fileInput = document.getElementById('docUploadInput');
+  const agent = document.getElementById('agentDocName').value.trim();
+  if (!fileInput.files.length || !agent) return alert("Agent and file are required.");
+  const formData = new FormData();
+  formData.append("file", fileInput.files[0]);
+  formData.append("agent", agent);
+  fetch('/digs/import-document', { method: 'POST', body: formData })
+    .then(res => res.json())
+    .then(data => document.getElementById('docUploadResult').textContent = data.message);
+}
+</script>

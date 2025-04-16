@@ -1,0 +1,41 @@
+{
+  "name": "Agentic Risk Monitor",
+  "description": "Tracks AI/human phase approvals",
+  "cards": [
+    {
+      "card_title": "Risk Distribution",
+      "display": "bar",
+      "query": {
+        "database": 1,
+        "type": "native",
+        "native": {
+          "query": "SELECT phase, risk_score, COUNT(*) FROM master_plan GROUP BY phase, risk_score"
+        }
+      }
+    },
+    {
+      "card_title": "Auto-Approval Rate",
+      "display": "gauge",
+      "query": {
+        "database": 1,
+        "type": "native",
+        "native": {
+          "query": "SELECT (SUM(CASE WHEN risk_score <= 4 THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS auto_approve_percent FROM master_plan"
+        },
+        "visualization_settings": {
+          "gauge.min": 0,
+          "gauge.max": 100
+        }
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "phase_filter",
+      "type": "category",
+      "values_query": {
+        "query": "SELECT DISTINCT phase FROM master_plan"
+      }
+    }
+  ]
+}

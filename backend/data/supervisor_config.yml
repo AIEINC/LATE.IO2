@@ -1,0 +1,5 @@
+workflow_api: "https://workflow.example.com/v1"
+master_plan_path: "/tables/master_plan_v3.2.csv"
+alerts:
+  pagerduty: "https://events.pagerduty.com/v2/enqueue"
+  slack: "https://hooks.slack.com/services/..."

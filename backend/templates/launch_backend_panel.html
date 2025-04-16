@@ -1,0 +1,56 @@
+
+<div id="launchBackendPanel" style="display:none; padding: 20px;">
+  <h2>Launch Backend Services</h2>
+  <table border="1" style="margin-bottom: 20px; width:100%; background:#111; color:#0f0; text-align:left;">
+    <thead>
+      <tr><th>Service</th><th>Status</th><th>Actions</th></tr>
+    </thead>
+    <tbody id="backendServiceTable">
+      <!-- Dynamic rows injected here -->
+    </tbody>
+  </table>
+  <button onclick="triggerPanel('bots')">Open Bots Window</button>
+  <button onclick="triggerPanel('brain')">Open Brain View</button>
+  <button onclick="triggerPanel('worker')">Open Worker Path</button>
+</div>
+
+<script>
+function toggleLaunchBackendPanel() {
+  const panel = document.getElementById('launchBackendPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  fetchBackendStatus();
+}
+
+function fetchBackendStatus() {
+  fetch('/backend/services/status')
+    .then(res => res.json())
+    .then(data => {
+      const table = document.getElementById('backendServiceTable');
+      table.innerHTML = '';
+      for (const [service, status] of Object.entries(data)) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${service}</td>
+          <td>${status}</td>
+          <td>
+            <button onclick="controlService('${service}', 'start')">Start</button>
+            <button onclick="controlService('${service}', 'stop')">Stop</button>
+            <button onclick="controlService('${service}', 'restart')">Restart</button>
+          </td>`;
+        table.appendChild(row);
+      }
+    });
+}
+
+function controlService(service, action) {
+  fetch('/backend/services/update', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({service, action})
+  }).then(() => fetchBackendStatus());
+}
+
+function triggerPanel(name) {
+  alert(`Switching to panel: ${name}`);
+  // Hook into global layout system, e.g. showPanel(name);
+}
+</script>

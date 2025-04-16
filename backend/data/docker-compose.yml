@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  agentic:
+    build: .
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+
+  watchdog:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 --cleanup

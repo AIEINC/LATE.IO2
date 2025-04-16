@@ -1,0 +1,23 @@
+global:
+  licenseKey: ""
+  tier: "pro"
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPU: 60
+
+monitoring:
+  prometheus:
+    enabled: true
+  alerts:
+    slackWebhook: "https://hooks.slack.com/services/..."
+
+resources:
+  limits:
+    cpu: 2
+    memory: 4Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi

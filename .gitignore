@@ -1,0 +1,6 @@
+.docker/
+.docker/config.json
+.docker/config.json
+*.zip
+__pycache__/
+.env

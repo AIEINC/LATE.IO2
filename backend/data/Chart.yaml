@@ -1,0 +1,11 @@
+apiVersion: v2
+name: agentic-deployment
+description: Agentic AI Helm Chart
+version: 0.1.0
+dependencies:
+  - name: redis
+    version: 17.0.0
+    repository: https://charts.bitnami.com/bitnami
+  - name: prometheus
+    version: 25.0.0
+    repository: https://prometheus-community.github.io/helm-charts

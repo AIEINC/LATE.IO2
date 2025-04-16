@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Agentic Mind Map</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    #toggle-buttons {
+      margin: 20px;
+    }
+    .map-container {
+      position: relative;
+      max-width: 100%;
+      height: auto;
+    }
+    .map-image {
+      display: none;
+      width: 90%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .map-image.active {
+      display: block;
+    }
+    .oauth-status {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Agentic Mind Map</h1>
+  <div id="toggle-buttons">
+    <button onclick="showLayer('brain')">Brain View</button>
+    <button onclick="showLayer('oauth')">OAuth Network View</button>
+  </div>
+  <div class="map-container">
+    <img id="brainImage" class="map-image active" src="static/images/agentic_brain_overlay_updated.png" alt="Agentic Brain">
+    <img id="oauthImage" class="map-image" src="static/images/mind-map-template-PDF (1).jpg" alt="OAuth Map">
+  </div>
+
+  <div class="oauth-status" id="oauthStatusContainer" style="display: none;">
+    <h2>OAuth Connections</h2>
+    <ul id="oauthStatusList"></ul>
+  </div>
+
+  <script>
+    function showLayer(layer) {
+      document.getElementById('brainImage').classList.remove('active');
+      document.getElementById('oauthImage').classList.remove('active');
+      document.getElementById('oauthStatusContainer').style.display = (layer === 'oauth') ? 'block' : 'none';
+
+      if (layer === 'brain') {
+        document.getElementById('brainImage').classList.add('active');
+      } else {
+        document.getElementById('oauthImage').classList.add('active');
+        loadOAuthStatus();
+      }
+    }
+
+    function loadOAuthStatus() {
+      fetch('/oauth/status/ExplorerBot')  // Default agent
+        .then(res => res.json())
+        .then(data => {
+          const list = document.getElementById('oauthStatusList');
+          list.innerHTML = '';
+          for (const [site, isAuth] of Object.entries(data)) {
+            const li = document.createElement('li');
+            li.textContent = site + (isAuth ? ' ✅' : ' ❌');
+            li.style.opacity = isAuth ? 0.5 : 1.0;
+            if (!isAuth) {
+              const btn = document.createElement('button');
+              btn.textContent = "Authorize";
+              btn.onclick = () => {
+                fetch(`/oauth/start/${site}`)
+                  .then(res => res.json())
+                  .then(data => window.open(data.auth_url, '_blank'));
+              };
+              li.appendChild(document.createTextNode(' '));
+              li.appendChild(btn);
+            }
+            list.appendChild(li);
+          }
+        });
+    }
+  </script>
+</body>
+</html>

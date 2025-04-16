@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Onboarding Wizard</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f4f4f4; }
+    .container { background: white; padding: 2rem; border-radius: 8px; max-width: 700px; margin: auto; }
+    h2 { margin-top: 0; }
+    label, select, input { display: block; width: 100%; margin-top: 1rem; }
+    button { margin-top: 1.5rem; padding: 0.75rem; background: #2b5797; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .token-link { font-size: 0.9em; color: #333; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to Agentic Terraforming Setup</h2>
+
+    <label for="role">Are you deploying or using the system today?</label>
+    <select id="role" onchange="toggleSections()">
+      <option value="">-- Choose Role --</option>
+      <option value="admin">Admin / Deploying</option>
+      <option value="user">User / Agent Access</option>
+    </select>
+
+    <div id="adminFields" style="display:none">
+      <h3>Admin Credentials</h3>
+      <label>GitHub Token<input type="text" id="github"></label>
+      <div class="token-link"><a href="https://github.com/settings/tokens" target="_blank">Get GitHub Token</a></div>
+
+      <label>DockerHub Token<input type="text" id="docker"></label>
+      <div class="token-link"><a href="https://hub.docker.com/settings/security" target="_blank">Get Docker Token</a></div>
+
+      <label>DigitalOcean API Key<input type="text" id="digitalocean"></label>
+      <div class="token-link"><a href="https://cloud.digitalocean.com/account/api/tokens" target="_blank">Get DigitalOcean Token</a></div>
+    </div>
+
+    <div id="userFields" style="display:none">
+      <h3>User OAuth Tokens</h3>
+      <label>Google Token<input type="text" id="google"></label>
+      <label>Notion Token<input type="text" id="notion"></label>
+      <label>Other Token (optional)<input type="text" id="custom"></label>
+<button onclick="window.open('/auth/google', '_blank')">Connect Google Account</button>
+
+      <p>You can also upload your previously saved credentials file:</p>
+      <input type="file" id="credUpload">
+    </div>
+
+    <button onclick="submitCreds()">Submit & Start</button>
+  </div>
+
+  <script>
+    function toggleSections() {
+      const role = document.getElementById('role').value;
+      document.getElementById('adminFields').style.display = role === 'admin' ? 'block' : 'none';
+      document.getElementById('userFields').style.display = role === 'user' ? 'block' : 'none';
+    }
+
+    async function submitCreds() {
+      const role = document.getElementById('role').value;
+      const body = { role };
+      if (role === 'admin') {
+        body.github = document.getElementById('github').value;
+        body.docker = document.getElementById('docker').value;
+        body.digitalocean = document.getElementById('digitalocean').value;
+      } else {
+        body.google = document.getElementById('google').value;
+        body.notion = document.getElementById('notion').value;
+        body.custom = document.getElementById('custom').value;
+      }
+
+      const res = await fetch('/intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const result = await res.json();
+      alert(result.message || JSON.stringify(result));
+    }
+  </script>
+</body>
+</html>

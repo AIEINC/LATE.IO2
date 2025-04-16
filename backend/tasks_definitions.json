@@ -1,0 +1,19 @@
+[
+  {
+    "name": "run_simulation",
+    "description": "Run a test simulation on the agent\u2019s current configuration.",
+    "params": []
+  },
+  {
+    "name": "digs_analysis",
+    "description": "Analyze DIGS memory and return trait summary.",
+    "params": []
+  },
+  {
+    "name": "upload_file",
+    "description": "Upload a CSV to the agent\u2019s memory.",
+    "params": [
+      "filename"
+    ]
+  }
+]
